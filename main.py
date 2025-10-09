@@ -1,7 +1,12 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import os
 
 hostName = 'localhost'
 serverPort = 8080
+
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+html_path = os.path.join(current_dir, 'static', 'Contacts.html')
 
 
 class MyServer(BaseHTTPRequestHandler):
@@ -11,7 +16,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        r = read_html("C:/Users/User/PycharmProjects/Django/static/Contacts.html")
+        r = read_html(html_path)
         self.wfile.write(r.encode('utf-8'))
 
 
