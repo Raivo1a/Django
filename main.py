@@ -6,7 +6,7 @@ serverPort = 8080
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-html_path = os.path.join(current_dir, "catalog", "templates", "Contacts.html")
+html_path = os.path.join(current_dir, "catalog", "templates", "contacts.html")
 
 
 class MyServer(BaseHTTPRequestHandler):
