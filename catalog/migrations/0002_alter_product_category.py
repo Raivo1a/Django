@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name="product",
+            model_name="products",
             name="category",
             field=models.ForeignKey(
                 blank=True,

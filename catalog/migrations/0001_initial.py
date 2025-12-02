@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name="Product",
+            name="products",
             fields=[
                 ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
                 (
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "image",
-                    models.ImageField(blank=True, help_text="Загрузите фото", null=True, upload_to="Product/photo"),
+                    models.ImageField(blank=True, help_text="Загрузите фото", null=True, upload_to="products/photo"),
                 ),
                 (
                     "category",
