@@ -35,6 +35,7 @@ class Product(models.Model):
     created_at = models.DateField(verbose_name="Дата создания")
     updated_at = models.DateField(verbose_name="Дата последнего изменения")
 
+
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
