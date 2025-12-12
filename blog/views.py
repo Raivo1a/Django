@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -23,13 +25,18 @@ class BlogDetailView(DetailView):
 
 class BlogCreateView(CreateView):
     model = Blog
-    fields = ("name", "description", "image", "created_at", "is_published", "views_counter")
+    fields = ("name", "description", "image", "is_published")
     success_url = reverse_lazy('blog:blog_list')
+
+    def form_valid(self, form):
+        form.instance.created_at = timezone.now().date()
+        form.instance.views_counter = 0
+        return super().form_valid(form)
 
 
 class BlogUpdateView(UpdateView):
     model = Blog
-    fields = ("name", "description", "image", "created_at", "is_published", "views_counter")
+    fields = ("name", "description", "image", "is_published")
     template_name = 'blog/blog_form.html'
 
     def get_success_url(self):
