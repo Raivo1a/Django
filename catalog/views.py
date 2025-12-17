@@ -11,6 +11,9 @@ from catalog.models import Product
 class ProductsListView(ListView):
     model = Product
 
+    def get_queryset(self):
+        return Product.objects.filter(is_published=True).order_by('name')
+
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product

@@ -34,6 +34,7 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name="Цена", help_text="Введите цену")
     created_at = models.DateField(verbose_name="Дата создания")
     updated_at = models.DateField(verbose_name="Дата последнего изменения")
+    is_published = models.BooleanField(default=False)
 
 
     class Meta:
