@@ -77,10 +77,12 @@ Auto
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Шестёрочка</h1>
             <p class="lead text-body-secondary">Ваш магазин низких цен</p>
+            {% if user.is_authenticated %}
             <p>
                 <a class="btn btn-primary" href="{% url 'catalog:products_create' %}" role="button">Создать продукт</a>
                 <a class="btn btn-primary" href="{% url 'blog:blog_list' %}" role="button">Блог</a>
             </p>
+            {% endif %}
         </div>
     </div>
     </section>

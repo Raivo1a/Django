@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Наименование", help_text="Введите наименование")
@@ -35,12 +37,19 @@ class Product(models.Model):
     created_at = models.DateField(verbose_name="Дата создания")
     updated_at = models.DateField(verbose_name="Дата последнего изменения")
     is_published = models.BooleanField(default=False)
+    owner = models.ForeignKey(User, verbose_name="Создатель", help_text="Укажите создателя публикации", blank=True, null=True, on_delete=models.SET_NULL)
 
 
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["name", "category", "price"]
+        permissions = [
+            ("can_edit_name", "Can edit name"),
+            ("can_edit_description", "Can edit description"),
+            ("can_unpublish_product", "Can unpublish product"),
+            ("can_delete_product", "Can delete product")
+        ]
 
     def __str__(self):
         return self.name

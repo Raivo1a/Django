@@ -49,10 +49,17 @@ class ProductForm(StyleFormMixin, ModelForm):
         image = self.cleaned_data.get('image')
         if image:
             max_size = 5 * 1024 * 1024
-            if image.size > max_size:
+            if hasattr(image, 'size') and image.size > max_size:
                 raise ValidationError('Файл не должен превышать 5 МБ.')
 
-            main, sub = image.content_type.split('/')
-            if main != 'image' or sub not in ['jpeg', 'png']:
-                raise ValidationError('Допустимы только форматы изображения JPEG или PNG.')
+            if hasattr(image, 'content_type'):
+                main, sub = image.content_type.split('/')
+                if main != 'image' or sub not in ['jpeg', 'png']:
+                    raise ValidationError('Допустимы только форматы изображения JPEG или PNG.')
         return image
+
+
+class ProductModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ("name", "description", "is_published")
