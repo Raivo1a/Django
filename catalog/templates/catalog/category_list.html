@@ -1,0 +1,23 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Наши категории товаров</h2>
+    <div class="row">
+        {% for cat in categories %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cat.name }}</h5>
+                    <p class="card-text text-muted">{{ cat.description|truncatechars:150 }}</p>
+                    <a href="{% url 'catalog:products_by_category' cat.pk %}" class="btn btn-primary mt-2">Посмотреть продукты</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>Категории не найдены.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
